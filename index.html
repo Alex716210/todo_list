@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <title>TODO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+  <script type="module" src="/js/models/task.js"></script>
+  <script type="module" src="/js/functions/get-new-id.js"></script>
+  <script type="module" src="/js/functions/save-list.js"></script>
+  <script type="module" src="/js/functions/create-todo-item.js"></script>
+  <script defer src="/js/functions/listenerLink.js" ></script>
+  <script type="module" defer src="/js/functions/create-todo-app.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      createTodoApp();
+    });
+  </script>
+</head>
+
+<body>
+  <div class="container mb-5">
+    <nav class="nav">
+      <a id="my" class="nav-link" href="index.html"> Мои дела</a>
+      <a id="dad" class="nav-link" href="index.html">Дела папы</a>
+      <a id="mom" class="nav-link" href="index.html">Дела мамы</a>
+    </nav>
+  </div>
+  <div id="todo-app" class="container">
+    <h2 id="title"></h2>
+    <form id="form" class="input-group  mb-3">
+      <input id="input" class="form-control" placeholder="Введите название нового дела" type="text">
+      <div class="input-group-append">
+        <button id="form-btn" class="btn btn-primary" disabled>Добавить дело</button>
+      </div>
+    </form>
+    <ul id="list" class="list-group"></ul>
+  </div>
+  
+</body>
+
+</html>
