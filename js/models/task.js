@@ -1,15 +1,19 @@
-export default class Task {
-  id;
+ class Task {
+   id;
 
-  name;
+   name;
 
-  isDone;
+   isDone;
 
-  constructor(id, name, isDone) {
-    this.id = id;
+   owner;
+   constructor(id, name, isDone, owner) {
+     this.id = id;
 
-    this.name = name;
+     this.name = name;
 
-    this.isDone = isDone;
-  }
-}
+     this.isDone = isDone;
+
+     this.owner = owner;
+
+   }
+ }
