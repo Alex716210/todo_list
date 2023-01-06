@@ -1,8 +1,12 @@
-function createTodoItem(task) {
+function createTodoElement(task) {
   let item = document.createElement('li'),
     buttonGroup = document.createElement('div'),
     isDoneButton = document.createElement('button'),
     deleteButton = document.createElement('button');
+
+    if (task.isDone == true) {
+      item.classList.toggle('list-group-item-success')
+    };
 
   item.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
   item.textContent = task.name;
@@ -20,8 +24,12 @@ function createTodoItem(task) {
     btn.addEventListener('click', () => {
       item.classList.toggle('list-group-item-success');
       for (const listItem of tasks) {
-        if (listItem.id == task.id) listItem.isDone = !listItem.isDone
+        if (listItem.id == task.id) {
+          listItem.isDone = !listItem.isDone
+          markTodoAsDone(task)
+        }
       }
+      console.log(tasks)
     });
   }
 
@@ -32,11 +40,15 @@ function createTodoItem(task) {
       if (confirm('Вы уверены?')) {
         item.remove();
         for (let i = 0; i < tasks.length; i++) {
-          if (tasks[i].id == task.id) tasks.splice(i, 1)
+          if (tasks[i].id == task.id) {
+            tasks.splice(i, 1);
+            deleteTodoItem(task);
+          }
         }
       }
     });
   }
+
   listenerDeleteBtn(deleteButton);
 
   return item

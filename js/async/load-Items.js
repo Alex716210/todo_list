@@ -1,10 +1,12 @@
 async function loadItems() {
   const response = await fetch('http://localhost:3000/posts');
-  const data = await response.json();
+  const taskItems = await response.json();
 
-  data.forEach(element => {
-    tasks.push(new Task(element.id, element.name, element.isDone, element.owner));
+
+  taskItems.forEach(task => {
+    tasks.push(new Task(task.id, task.name, task.isDone, task.owner));
   });
-
+  
+  loadPage(getPageName() || 'My');
+  console.log(tasks)
 }
-loadItems()

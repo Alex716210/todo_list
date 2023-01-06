@@ -8,16 +8,16 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
     integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
   <script src="/js/async/load-Items.js"></script>
-  <script src="/js/async/create-todo-item.js" ></script>
+  <script src="/js/async/post-todo-item.js"></script>
+  <script src="/js/async/delete-todo-item.js"></script>
+  <script src="/js/async/mark-todo-asdone.js"></script>
   <script src="/js/models/task.js"></script>
   <script src="/js/functions/create-todo-element.js"></script>
   <script src="/js/functions/get-list.js"></script>
-  <script src="/js/functions/get-new-id.js"></script>
   <script src="/js/functions/get-page-name.js"></script>
   <script src="/js/functions/load-page.js"></script>
   <script src="/js/functions/show-list.js"></script>
-  <script src="/js/functions/proc.js"></script>
-  <script defer src="/js/functions/add-task.js"></script>
+  <script src="/js/functions/add-task.js"></script>
 </head>
 
 <body>
@@ -28,19 +28,23 @@
       <a id="mom" onclick="loadPage('Mom')" class="nav-link">Дела мамы</a>
     </nav>
   </div>
+
   <div id="todo-app" class="container">
     <h2 id="title"></h2>
-
-    <form id="form"  class="input-group  mb-3">
+    <form id="form" class="input-group  mb-3">
       <input id="input" class="form-control" placeholder="Введите название нового дела" type="text">
       <div class="input-group-append">
-        <button id="form-btn" class="btn btn-primary" type="button" onclick="addTask()" >Добавить дело</button>
+        <button id="form-btn" class="btn btn-primary" type="button" onclick="addTask()">Добавить дело</button>
       </div>
     </form>
 
+    <div id="content"></div>
+  </div>
+  <script>
+    const tasks = [];
 
-  <div id="content"></div>
-  </div> 
+    loadItems()
+  </script>
 </body>
 
 </html>

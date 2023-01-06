@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "server":"json-server -w server/db.json"
+    "server":"json-server -w ../sandbox/server/db.json"
   },
   "devDependencies": {
     "json-server": "^0.17.1"
