@@ -1,55 +1,34 @@
 function createTodoElement(task) {
-  let item = document.createElement('li'),
+  let elementItem = document.createElement('li'),
     buttonGroup = document.createElement('div'),
     isDoneButton = document.createElement('button'),
-    deleteButton = document.createElement('button');
+    deleteButton = document.createElement('button'),
+    editButton = document.createElement('button');
 
-    if (task.isDone == true) {
-      item.classList.toggle('list-group-item-success')
-    };
 
-  item.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
-  item.textContent = task.name;
+  if (task.isDone == true) {
+    elementItem.classList.toggle('list-group-item-success')
+  };
+
+  elementItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+  elementItem.textContent = task.name;
+  editButton.addEventListener('click',()=>showModal(task)); 
+  editButton.classList.add('btn', 'btn-warning');
+  editButton.textContent = 'Изменить';
   buttonGroup.classList.add('btn-group', 'btn-group-sm');
-  isDoneButton.classList.add('btn', 'btn-success')
+  isDoneButton.classList.add('btn', 'btn-success');
   isDoneButton.textContent = 'Готово';
   deleteButton.classList.add('btn', 'btn-danger')
   deleteButton.textContent = 'удалить';
 
+  buttonGroup.append(editButton)
   buttonGroup.append(isDoneButton);
   buttonGroup.append(deleteButton);
-  item.append(buttonGroup);
+  elementItem.append(buttonGroup);
 
-  function listenerIsDoneBtn(btn) {
-    btn.addEventListener('click', () => {
-      item.classList.toggle('list-group-item-success');
-      for (const listItem of tasks) {
-        if (listItem.id == task.id) {
-          listItem.isDone = !listItem.isDone
-          markTodoAsDone(task)
-        }
-      }
-      console.log(tasks)
-    });
-  }
+  listenerIsDoneBtn(isDoneButton, task, elementItem);
 
-  listenerIsDoneBtn(isDoneButton);
+  listenerDeleteBtn(deleteButton, task);
 
-  function listenerDeleteBtn(btn) {
-    btn.addEventListener('click', () => {
-      if (confirm('Вы уверены?')) {
-        item.remove();
-        for (let i = 0; i < tasks.length; i++) {
-          if (tasks[i].id == task.id) {
-            tasks.splice(i, 1);
-            deleteTodoItem(task);
-          }
-        }
-      }
-    });
-  }
-
-  listenerDeleteBtn(deleteButton);
-
-  return item
+  return elementItem;
 }

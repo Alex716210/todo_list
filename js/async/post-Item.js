@@ -1,4 +1,4 @@
-async function postTodoItem(task) {
+async function postItem(task) {
     const response = await fetch('http://localhost:3000/posts', {
         method: 'POST',
         headers: {
@@ -11,5 +11,4 @@ async function postTodoItem(task) {
     tasks.push(new Task(taskItem.id, taskItem.name, taskItem.isDone, taskItem.owner));
 
     loadPage(getPageName() || 'My');
-    console.log(tasks)
 }
