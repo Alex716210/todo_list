@@ -16,8 +16,9 @@
   <script src="/js/async/delete-Item.js"></script>
   <script src="/js/async/change-isdone-Item.js"></script>
   <script src="/js/async/patch-Item.js"></script>
-  <script src="/js/functions/save-task.js" ></script>
-  <script src="/js/functions/show-modal.js" ></script>
+  <script src="/js/functions/filter-tasks.js"></script>
+  <script src="/js/functions/save-task.js"></script>
+  <script src="/js/functions/show-modal.js"></script>
   <script src="/js/functions/listener-delete-btn.js"></script>
   <script src="/js/functions/listener-Isdone-btn.js"></script>
   <script src="/js/models/task.js"></script>
@@ -26,6 +27,8 @@
   <script src="/js/functions/get-page-name.js"></script>
   <script src="/js/functions/load-page.js"></script>
   <script src="/js/functions/show-list.js"></script>
+  <script src="/js/functions/setup-pagination.js" ></script>
+  <script src="/js/functions/pagination-button.js" ></script>
 </head>
 
 <body>
@@ -37,14 +40,25 @@
     </nav>
   </div>
 
-  <div id="todo-app" class="container">   
-      <h2 id="title"></h2>
-    <div id="content"></div>
+  <div id="todo-app" class="container">
     <div class="wrapper">
-    <button  type="button"  class="btn btn-primary add-btn" onclick="showModal()">
-      Добавить дело
-    </button>
-  </div>
+      <h2 id="title"></h2>
+      <input id="search-by-name" type="text" oninput="filterTasks()" placeholder="Найти дело по имени">
+      <button type="button" class="btn btn-primary add-btn" onclick="showModal()">
+        Добавить дело
+      </button>
+    </div>
+    <div id="content"></div>
+    <div class="btn-wrapper-footer">
+      <div class="pagenumbers" id="pagination"></div>
+
+      <div class="btn_wrapper_footer-filter">
+        <button id="isDone" class="btn btn-primary" onclick="filterTasks('isDone')">выбрать все дела</button>
+        <button id="delet" class="btn btn-primary" onclick="filterTasks('delet')">удалить все дела</button>
+        <button id="all" class="btn btn-primary" onclick="filterTasks('all')">показать все дела</button>
+        <button id="completed" class="btn btn-primary" onclick="filterTasks('completed')">показать завершенные</button>
+      </div>
+    </div>
   </div>
 
   <!-- Модальное окно -->
@@ -62,7 +76,7 @@
           <button id="close-btn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
           <!-- <button id="form-btn" class="btn btn-primary" type="button" data-bs-dismiss="modal"
             onclick="addTask()">Добавить</button> -->
-            <button id="save-btn" class="btn btn-primary" type="button"></button>
+          <button id="save-btn" class="btn btn-primary" type="button"></button>
         </div>
       </div>
     </div>
@@ -72,11 +86,9 @@
 
   <script>
     // после закрытия модалки: почистить инпут , и ремувнуть листенер после закрытия модалки +
-   
-
-    let tasks = [];
 
     loadItems();
+    let tasks = [];
   </script>
 </body>
 
