@@ -87,7 +87,14 @@ main .list .item:hover {
 	background-color: #44EEAA;
 }
 
-.pagenumbers button.active {
-	background-color: #44EEAA;
+.active {
+	background-color: red;
 	box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
+}
+#search-by-name{
+	width: 250px;
+	cursor: pointer;
+}
+#checkbox{
+	cursor: pointer;
 }

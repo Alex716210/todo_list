@@ -1,32 +1,19 @@
-function filterTasks(str = null) {
-    let input = document.getElementById('search-by-name');
+function filterTasks() {
+    const showCompleted = document.getElementById('checkbox').checked;
 
-    let newArr;
-    switch (str) {
-        case 'isDone':
-            getList(getPageName()).filter(item => changeIsDoneItem(item));
-            break;
-        case 'completed':
-            newArr = getList(getPageName()).filter(item => item.isDone == true);
-            if (newArr != null && newArr != "") {
-                tasks = newArr;
-            }
-            break;
-        case 'delet':
-            getList(getPageName()).filter(item => deleteItem(item));
-            break;
-        case null:
-            if (input.value == "") {
-                loadItems()
-            } else {
-                newArr = getList(getPageName()).filter(item => item.name.includes(input.value));
-                tasks = newArr;
-            }
-            break;
-        default:
-            loadItems()
+    const searchQuery = document.getElementById('search-by-name').value.toLowerCase().trim();
+
+    let filteredTasks = getList(getPageName());
+
+    if (searchQuery) {
+        filteredTasks = filteredTasks.filter(item => item.name.toLowerCase().includes(searchQuery));
     }
 
-    loadPage(getPageName() || 'My');
+    if (showCompleted) {
+        filteredTasks = filteredTasks.filter(item => item.isDone);
+    }
 
+
+    showList(filteredTasks);
+    createPagination(filteredTasks, document.getElementById('pagination'), rows);
 }

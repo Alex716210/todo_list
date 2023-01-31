@@ -15,7 +15,7 @@ function showModal(task = null) {
 
     saveBtn.disabled = true;
 
-    saveBtn.textContent = task ? 'Изменить' : 'Добавить';
+    saveBtn.textContent = task ? 'Сохранить' : 'Добавить';
 
     input.addEventListener('input', function () {
         input.value !== "" ? saveBtn.disabled = false : saveBtn.disabled = true;
